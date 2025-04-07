@@ -3,10 +3,18 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useGoals } from "@/contexts/GoalContext";
-import { Plus } from "lucide-react";
+import { Plus, Sparkles } from "lucide-react";
 import { GoalStatus, SubGoal } from "@/types";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from "uuid";
+
+// Different gradient styles for each suggestion
+const gradientStyles = [
+  "gradient-card-purple vibrant-shadow",
+  "gradient-card-warm vibrant-shadow",
+  "gradient-card-cool vibrant-shadow",
+  "gradient-card-teal vibrant-shadow"
+];
 
 const goalSuggestions = [
   {
@@ -16,7 +24,8 @@ const goalSuggestions = [
       { id: uuidv4(), title: "Morning review session", status: "not-started" as GoalStatus },
       { id: uuidv4(), title: "Afternoon focused work", status: "not-started" as GoalStatus },
       { id: uuidv4(), title: "Evening summary and preparation", status: "not-started" as GoalStatus },
-    ]
+    ],
+    icon: "✨"
   },
   {
     title: "Prepare for Upcoming Exams",
@@ -26,7 +35,8 @@ const goalSuggestions = [
       { id: uuidv4(), title: "Schedule practice tests", status: "not-started" as GoalStatus },
       { id: uuidv4(), title: "Form/join study group", status: "not-started" as GoalStatus },
       { id: uuidv4(), title: "Review past exams", status: "not-started" as GoalStatus },
-    ]
+    ],
+    icon: "🚀"
   },
   {
     title: "Complete Semester Project",
@@ -36,7 +46,8 @@ const goalSuggestions = [
       { id: uuidv4(), title: "Draft initial version", status: "not-started" as GoalStatus },
       { id: uuidv4(), title: "Get feedback", status: "not-started" as GoalStatus },
       { id: uuidv4(), title: "Finalize and submit", status: "not-started" as GoalStatus },
-    ]
+    ],
+    icon: "📊"
   },
   {
     title: "Build Technical Skills",
@@ -45,7 +56,8 @@ const goalSuggestions = [
       { id: uuidv4(), title: "Complete online course", status: "not-started" as GoalStatus },
       { id: uuidv4(), title: "Build a personal project", status: "not-started" as GoalStatus },
       { id: uuidv4(), title: "Practice with coding challenges", status: "not-started" as GoalStatus },
-    ]
+    ],
+    icon: "💻"
   }
 ];
 
@@ -68,24 +80,34 @@ export const GoalSuggestions: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-6">Goal Suggestions</h2>
+    <div className="mt-8 animate-fade-in">
+      <h2 className="text-2xl font-bold mb-6 flex items-center">
+        <Sparkles className="h-6 w-6 mr-2 text-masterplan-amber" />
+        <span className="gradient-text-vibrant">Goal Suggestions</span>
+      </h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {goalSuggestions.map((suggestion, index) => (
-          <Card key={index} className="card-hover">
+          <Card 
+            key={index} 
+            className={`card-hover overflow-hidden ${gradientStyles[index % gradientStyles.length]}`}
+          >
+            <div className="absolute top-0 right-0 p-2 text-2xl opacity-30">{suggestion.icon}</div>
+            
             <CardHeader className="pb-2">
               <h3 className="text-lg font-semibold">{suggestion.title}</h3>
             </CardHeader>
+            
             <CardContent>
               <p className="text-sm text-muted-foreground mb-4">
                 {suggestion.description}
               </p>
-              <div className="text-xs text-muted-foreground mb-4">
+              <div className="text-xs text-muted-foreground mb-4 font-medium">
                 {suggestion.subGoals.length} pre-defined tasks
               </div>
+              
               <Button 
-                className="w-full" 
+                className={`w-full ${addedSuggestions.includes(index) ? "" : "bg-gradient-to-r from-masterplan-purple to-masterplan-teal hover:opacity-90"}`}
                 variant={addedSuggestions.includes(index) ? "outline" : "default"}
                 onClick={() => handleAddSuggestion(index)}
                 disabled={addedSuggestions.includes(index)}

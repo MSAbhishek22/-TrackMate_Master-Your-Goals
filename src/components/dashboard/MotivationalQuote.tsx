@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 
 const quotes = [
   {
@@ -46,30 +46,44 @@ const quotes = [
   }
 ];
 
+const gradientStyles = [
+  "from-masterplan-purple/20 to-masterplan-teal/15",
+  "from-masterplan-amber/20 to-masterplan-coral/15",
+  "from-blue-400/20 to-masterplan-purple/15",
+  "from-masterplan-teal/20 to-masterplan-green/15"
+];
+
 export const MotivationalQuote: React.FC = () => {
   const [quote, setQuote] = useState(quotes[0]);
+  const [gradientIndex, setGradientIndex] = useState(0);
 
   useEffect(() => {
     // Get a random quote on initial render
     const randomIndex = Math.floor(Math.random() * quotes.length);
     setQuote(quotes[randomIndex]);
     
-    // Update quote every 24 hours (in a real app)
-    // For demo purposes, we'll change it every few minutes
+    // Random gradient
+    setGradientIndex(Math.floor(Math.random() * gradientStyles.length));
+    
+    // Update quote every few minutes
     const interval = setInterval(() => {
       const newIndex = Math.floor(Math.random() * quotes.length);
       setQuote(quotes[newIndex]);
+      setGradientIndex(Math.floor(Math.random() * gradientStyles.length));
     }, 5 * 60 * 1000); // 5 minutes
     
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <Card className="dashboard-card h-full bg-gradient-to-br from-masterplan-purple/10 to-masterplan-teal/10">
+    <Card className={`dashboard-card h-full bg-gradient-to-br ${gradientStyles[gradientIndex]} animated-bg border border-purple-200/30`}>
       <CardContent className="p-6 flex flex-col h-full">
         <div className="flex-grow">
-          <Quote className="h-8 w-8 text-masterplan-purple/50 mb-4" />
-          <blockquote className="text-lg font-medium italic mb-4">
+          <div className="flex justify-between items-start">
+            <Quote className="h-8 w-8 text-masterplan-purple opacity-50 mb-4" />
+            <Star className="h-5 w-5 text-masterplan-amber opacity-50" />
+          </div>
+          <blockquote className="text-lg font-medium italic mb-4 gradient-text-warm">
             "{quote.text}"
           </blockquote>
         </div>

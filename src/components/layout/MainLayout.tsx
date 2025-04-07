@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-hero-pattern">
       <Header />
       <main className="flex-1">
         <Outlet />
