@@ -1,73 +1,97 @@
-# Welcome to your Lovable project
 
-## Project info
+# MasterPlan - Goal Accountability App
 
-**URL**: https://lovable.dev/projects/effda062-11e4-43f1-bf68-fce23ff6f47a
+## Project Overview
 
-## How can I edit this code?
+MasterPlan is a goal tracking and accountability app designed to help students stay organized, motivated and productive. The application allows users to create goals, break them down into manageable sub-goals, track their progress, and share achievements.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- Goal creation and management
+- Sub-goal tracking
+- Progress visualization
+- Goal sharing
+- Motivational quotes
+- User profiles
+- Dashboard with progress summary
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/effda062-11e4-43f1-bf68-fce23ff6f47a) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## Tech Stack
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **React**: Frontend library for building user interfaces
+- **TypeScript**: Type-safe JavaScript
+- **Vite**: Fast build tool and development server
+- **React Router**: For navigation and routing
+- **TanStack Query**: For data fetching and state management
+- **Tailwind CSS**: For styling with utility classes
+- **shadcn/ui**: Component library built on Radix UI
+- **Recharts**: For data visualization
+- **UUID**: For generating unique IDs
 
-## How can I deploy this project?
+## Getting Started
 
-Simply open [Lovable](https://lovable.dev/projects/effda062-11e4-43f1-bf68-fce23ff6f47a) and click on Share -> Publish.
+### Prerequisites
 
-## Can I connect a custom domain to my Lovable project?
+- Node.js (v16+)
+- npm or yarn
 
-Yes it is!
+### Installation
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```sh
+# Clone the repository
+git clone <your-repo-url>
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+# Navigate to the project directory
+cd masterplan
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+The app will be available at `http://localhost:8080`
+
+## Project Structure
+
+```
+masterplan/
+├── public/            # Static assets
+├── src/
+│   ├── components/    # React components
+│   │   ├── auth/      # Authentication components
+│   │   ├── dashboard/ # Dashboard components
+│   │   ├── goals/     # Goal management components
+│   │   ├── layout/    # Layout components
+│   │   ├── profile/   # User profile components
+│   │   └── ui/        # UI components (shadcn)
+│   ├── contexts/      # React contexts for state management
+│   ├── hooks/         # Custom React hooks
+│   ├── lib/           # Utility functions
+│   ├── pages/         # Page components
+│   ├── types/         # TypeScript type definitions
+│   ├── App.tsx        # Main App component
+│   ├── main.tsx       # Entry point
+│   └── index.css      # Global styles
+├── index.html         # HTML template
+├── tailwind.config.ts # Tailwind CSS configuration
+├── tsconfig.json      # TypeScript configuration
+└── vite.config.ts     # Vite configuration
+```
+
+## Building for Production
+
+```sh
+# Build the app
+npm run build
+
+# Preview the production build locally
+npm run preview
+```
+
+## Customizing
+
+- Edit `src/index.css` to modify global styles and theme variables
+- Update `tailwind.config.ts` to customize the Tailwind configuration
